@@ -18,19 +18,12 @@ export default function Home() {
     async function fetchPosts() {
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/articles`,
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-            },
-          }
+          `${import.meta.env.VITE_API_URL}/articles`
         );
 
         if (!response.ok) {
           throw new Error("something went wrong");
         }
-
         const data = await response.json();
         setPosts(data.data.reverse());
       } catch (error) {
