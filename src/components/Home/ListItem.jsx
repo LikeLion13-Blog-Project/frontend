@@ -1,5 +1,4 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { formatKoreanDate } from "../../utils/dateFormat";
 
@@ -11,14 +10,8 @@ export default function ListItem({
   totalComments,
   totalLike,
 }) {
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-    navigate(`/post/${postId}`);
-  };
-
   return (
-    <ListItemWrapper onClick={handleClick}>
+    <ListItemWrapper>
       <ListItemTitle>{title}</ListItemTitle>
       <div className="info">
         <ListItemAuthor>{author}</ListItemAuthor>

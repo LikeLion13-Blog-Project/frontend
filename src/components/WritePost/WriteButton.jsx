@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function WriteButton({ disabled, isEdit }) {
+export default function WriteButton({ disabled }) {
   return (
     <WriteButtonWrapper type="submit" disabled={disabled} $disabled={disabled}>
-      {isEdit ? "수정하기" : "작성하기"}
+      작성하기
     </WriteButtonWrapper>
   );
 }
@@ -25,10 +25,6 @@ const WriteButtonWrapper = styled.button`
   color: ${({ $disabled }) =>
     $disabled ? "var(--icon-quaternary, #c2c4c8)" : "#fff"};
   text-align: center;
-
-  text-align: center;
-
-  /* label/large-bold */
 
   font-size: 1.6rem;
   font-style: normal;

@@ -1,13 +1,8 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const PostEditBtn = ({ data }) => {
-  const navigate = useNavigate();
-
-  const handleEdit = () => {
-    navigate("/write", { state: { post: data } });
-  };
+  const handleEdit = () => {};
   return <StyledIcon name="pencil-outline" onClick={handleEdit} />;
 };
 
