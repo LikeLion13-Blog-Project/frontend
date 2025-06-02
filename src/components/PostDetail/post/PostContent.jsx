@@ -5,7 +5,8 @@ import LikeBtn from "./LikeBtn";
 import PostEditBtn from "./PostEditBtn";
 import PostDeleteBtn from "./PostDeleteBtn";
 
-const PostContent = ({ data }) => {
+//todo: 삭제버튼 + api 구현하기
+const PostContent = ({ data, refreshPostData }) => {
   return (
     <PostContentWrapper>
       <Header>
@@ -17,7 +18,7 @@ const PostContent = ({ data }) => {
       </Header>
       <Content>{data?.content}</Content>
       <BtnSection>
-        <LikeBtn data={data} />
+        <LikeBtn data={data} refreshPostData={refreshPostData} />
         <BtnWrapper>
           <PostEditBtn data={data} />
           <PostDeleteBtn data={data} />

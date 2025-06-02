@@ -50,7 +50,7 @@ const PostDeleteBtn = ({ data }) => {
 
   return (
     <>
-      <StyledModal $isVisible={isVisible}>
+      <StyledModal isVisible={isVisible}>
         {renderModal && (
           <DeleteModal
             isPost={true}

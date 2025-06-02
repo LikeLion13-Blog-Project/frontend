@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-const orders = ["최신순", "인기순", "댓글순"];
-
-export default function HeaderSection() {
+export default function HeaderSection({ filter, onChangeFilter }) {
   const navigate = useNavigate();
 
   const [showOrders, setShowOrders] = useState(false);
@@ -22,19 +20,40 @@ export default function HeaderSection() {
       <div>
         <div className="title">게시판</div>
         <div className="order" onClick={onClickOrder}>
-          <CurrentFilter>{}</CurrentFilter>
-
+          <span>{filter}</span>
           <CaretDownWrapper $showOrders={showOrders}>
             <ion-icon name="caret-down-outline" />
           </CaretDownWrapper>
 
           {showOrders && (
             <OrderList className="orders">
-              {orders.map((order) => (
-                <div key={order} className="order-item">
-                  {order}
-                </div>
-              ))}
+              <div
+                className="order-item"
+                onClick={() => {
+                  onChangeFilter("최신순");
+                  setShowOrders(false);
+                }}
+              >
+                최신순
+              </div>
+              <div
+                className="order-item"
+                onClick={() => {
+                  onChangeFilter("인기순");
+                  setShowOrders(false);
+                }}
+              >
+                인기순
+              </div>
+              <div
+                className="order-item"
+                onClick={() => {
+                  onChangeFilter("댓글순");
+                  setShowOrders(false);
+                }}
+              >
+                댓글순
+              </div>
             </OrderList>
           )}
         </div>
@@ -86,8 +105,6 @@ const HeaderSectionWrapepr = styled.section`
     }
   }
 `;
-
-const CurrentFilter = styled.span``;
 
 const OrderList = styled.div`
   width: 100%;
