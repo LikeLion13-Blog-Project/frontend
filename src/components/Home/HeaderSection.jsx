@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-export default function HeaderSection({ filter, onChangeFilter }) {
+const orders = ["최신순", "인기순", "댓글순"];
+
+export default function HeaderSection() {
   const navigate = useNavigate();
 
   const [showOrders, setShowOrders] = useState(false);
@@ -20,40 +22,19 @@ export default function HeaderSection({ filter, onChangeFilter }) {
       <div>
         <div className="title">게시판</div>
         <div className="order" onClick={onClickOrder}>
-          <span>{filter}</span>
+          <CurrentFilter>{}</CurrentFilter>
+
           <CaretDownWrapper $showOrders={showOrders}>
             <ion-icon name="caret-down-outline" />
           </CaretDownWrapper>
 
           {showOrders && (
             <OrderList className="orders">
-              <div
-                className="order-item"
-                onClick={() => {
-                  onChangeFilter("최신순");
-                  setShowOrders(false);
-                }}
-              >
-                최신순
-              </div>
-              <div
-                className="order-item"
-                onClick={() => {
-                  onChangeFilter("인기순");
-                  setShowOrders(false);
-                }}
-              >
-                인기순
-              </div>
-              <div
-                className="order-item"
-                onClick={() => {
-                  onChangeFilter("댓글순");
-                  setShowOrders(false);
-                }}
-              >
-                댓글순
-              </div>
+              {orders.map((order) => (
+                <div key={order} className="order-item">
+                  {order}
+                </div>
+              ))}
             </OrderList>
           )}
         </div>
@@ -105,6 +86,8 @@ const HeaderSectionWrapepr = styled.section`
     }
   }
 `;
+
+const CurrentFilter = styled.span``;
 
 const OrderList = styled.div`
   width: 100%;

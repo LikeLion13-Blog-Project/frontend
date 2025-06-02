@@ -2,63 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
-const WriteComment = ({ commentList, onCommentPosted }) => {
+const WriteComment = ({ commentList }) => {
   const { postId } = useParams();
-
-  const [disabled, setDisabled] = useState(true);
-  const [content, setContent] = useState("");
-
-  const postComment = async () => {
-    try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/comments/${postId}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          },
-          body: JSON.stringify({
-            content,
-          }),
-        }
-      );
-
-      const result = await response.json();
-      if (!response.ok) {
-        throw new Error(result.message || "댓글 등록에 실패했습니다.");
-      }
-      setContent("");
-    } catch (error) {
-      console.error("Error creating comment:", error);
-      alert(error.message);
-    } finally {
-      onCommentPosted();
-    }
-  };
-
-  useEffect(() => {
-    if (content.length > 0) {
-      setDisabled(false);
-    } else {
-      setDisabled(true);
-    }
-  }, [content]);
 
   return (
     <WriteWrapper>
       <h1>댓글 {commentList?.length ?? 0}</h1>
 
-      <Textarea
-        placeholder="댓글을 남겨주세요"
-        id="content"
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
-      />
-      <WriteFooter $disabled={disabled}>
-        <button disabled={disabled} onClick={postComment}>
-          댓글 남기기
-        </button>
+      <Textarea placeholder="댓글을 남겨주세요" id="content" />
+      <WriteFooter>
+        <button>댓글 남기기</button>
       </WriteFooter>
     </WriteWrapper>
   );

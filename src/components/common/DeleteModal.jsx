@@ -10,7 +10,7 @@ import styled from "styled-components";
  * @param {function} handleCancelBtn - 취소 버튼 클릭 시 호출되는 함수입니다.
  */
 
-const DeleteModal = ({ isPost, handleDeleteBtn, handleCancelBtn }) => {
+const DeleteModal = ({ isPost, handleCancelBtn }) => {
   return (
     <ModalContainer>
       <Information>
@@ -19,7 +19,7 @@ const DeleteModal = ({ isPost, handleDeleteBtn, handleCancelBtn }) => {
       </Information>
       <Actions>
         <button onClick={handleCancelBtn}>취소</button>
-        <button onClick={handleDeleteBtn}>삭제하기 </button>
+        <button>삭제하기 </button>
       </Actions>
     </ModalContainer>
   );
